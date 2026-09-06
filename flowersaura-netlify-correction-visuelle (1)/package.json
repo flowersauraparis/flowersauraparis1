@@ -1,0 +1,12 @@
+{
+  "name": "flowers-aura-paris",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "cf:login": "wrangler login"
+  },
+  "devDependencies": {
+    "wrangler": "latest"
+  }
+}
