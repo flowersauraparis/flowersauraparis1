@@ -2053,6 +2053,70 @@ footer .footer-title,footer h3{font-size:1rem!important}
   @media (prefers-reduced-motion:reduce){.aura-ticker-track{animation:none;padding-left:18px;flex-wrap:wrap;justify-content:center;white-space:normal}}
   @media(max-width:560px){.aura-ticker-track{font-size:9px;gap:18px;animation-duration:20s}}
 </style>
+
+<style id="aura-final-polish">
+  /* Unified action buttons: same visual weight and typography */
+  .product-body .btn-add-cart,
+  .product-body .btn-cart,
+  .card-buy .btn-add-cart,
+  .card-buy .btn-cart,
+  .composer-actions .btn-add-cart,
+  .composer-actions .btn-secondary,
+  .composer-actions .btn-primary,
+  .aura-buy-now{
+    min-height:42px;
+    height:42px;
+    padding:0 16px !important;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+    font-family:var(--sans);
+    font-size:10px !important;
+    font-weight:700;
+    letter-spacing:.055em;
+    text-transform:uppercase;
+    border-radius:999px;
+    white-space:nowrap;
+    box-sizing:border-box;
+  }
+  .product-body .btn-cart, .card-buy .btn-cart, .aura-buy-now{
+    background:var(--rose);
+    border:1px solid var(--rose);
+    color:var(--on-accent);
+  }
+  .product-body .btn-cart:hover, .card-buy .btn-cart:hover, .aura-buy-now:hover{
+    background:#70213B;
+    color:var(--on-accent);
+  }
+  .product-body .btn-add-cart, .card-buy .btn-add-cart, .composer-actions .btn-add-cart{
+    background:transparent;
+    border:1px solid var(--gold);
+    color:var(--gold);
+  }
+  .product-body .btn-add-cart:hover, .card-buy .btn-add-cart:hover, .composer-actions .btn-add-cart:hover{
+    background:var(--gold);
+    color:#fff;
+  }
+  .product-body .btn-add-cart.is-added, .card-buy .btn-add-cart.is-added{
+    border-color:#4a7c5c; color:#4a7c5c; background:transparent;
+  }
+  .composer-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .hero-bottom.reassurance-strip{display:none !important;}
+  @media(max-width:560px){
+    .product-body .btn-add-cart,
+    .product-body .btn-cart,
+    .card-buy .btn-add-cart,
+    .card-buy .btn-cart{
+      min-height:40px; height:40px; padding:0 13px !important; font-size:9px !important;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -2133,12 +2197,6 @@ footer .footer-title,footer h3{font-size:1rem!important}
 </div>
   </div>
 </section>
-<div class="hero-bottom reassurance-strip">
-  <span>🚚 <b>Livraison à domicile</b></span>
-  <span>🔒 <b>Paiement sécurisé</b></span>
-  <span>✨ <b>Bouquet personnalisable</b></span>
-</div>
-
 <main class="wrap">
 
   <section class="section collection-section" id="collection">
