@@ -1,154 +1,164 @@
-exports.handler = async (event) => {
-  const json = (statusCode, body) => ({
-    statusCode,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-store',
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: JSON.stringify(body)
-  });
+const https = require('https');
 
-  if (event.httpMethod === 'OPTIONS') return json(204, {});
-  if (event.httpMethod !== 'POST') return json(405, { error: 'Méthode non autorisée.' });
+function stripeCreateSession(secret, params) {
+  return new Promise((resolve, reject) => {
+    const body = params.toString();
+    const req = https.request({
+      hostname: 'api.stripe.com',
+      path: '/v1/checkout/sessions',
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(body),
+      },
+    }, (res) => {
+      let data = '';
+      res.setEncoding('utf8');
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          resolve({ statusCode: res.statusCode || 500, data: JSON.parse(data || '{}') });
+        } catch {
+          resolve({ statusCode: res.statusCode || 500, data: { error: { message: 'Réponse Stripe invalide.' } } });
+        }
+      });
+    });
+    req.on('error', reject);
+    req.setTimeout(20000, () => req.destroy(new Error('Stripe timeout')));
+    req.write(body);
+    req.end();
+  });
+}
+
+const FIXED = Object.freeze({
+  'bouquet-20': 2490,
+  'bouquet-40': 3990,
+  'bouquet-70': 6490,
+  'bouquet-100': 7990,
+  'doudou': 1000,
+});
+const COMPOSED = Object.freeze({ '20':2490, '40':3990, '70':6490, '100':7990 });
+const EXTRAS = Object.freeze({
+  'Couronne':390,
+  'Mini doudou':290,
+  'Initiale':390,
+  'Emballage prestige':990,
+  'Carte à brûler':390,
+});
+const UNIT_ROSE = 400;
+
+const response = (statusCode, body) => ({
+  statusCode,
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  },
+  body: JSON.stringify(body),
+});
+
+const safe = (v, fallback='') => String(v ?? fallback).slice(0, 500);
+const qtyOf = (v) => Number.isFinite(Number(v)) ? Math.max(1, Math.min(20, Math.floor(Number(v)))) : 1;
+
+exports.handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') return response(204, {});
+  if (event.httpMethod !== 'POST') return response(405, { error: 'Méthode non autorisée.' });
 
   const secret = process.env.STRIPE_SECRET_KEY;
-  if (!secret) {
-    return json(500, { error: 'STRIPE_SECRET_KEY est absente des variables Netlify.' });
-  }
+  if (!secret) return response(500, { error: 'STRIPE_SECRET_KEY est absente dans Netlify.' });
 
   let payload;
   try {
     payload = JSON.parse(event.body || '{}');
   } catch {
-    return json(400, { error: 'Panier invalide.' });
+    return response(400, { error: 'Panier invalide.' });
   }
 
   const items = Array.isArray(payload.items) ? payload.items : [];
-  if (!items.length || items.length > 50) {
-    return json(400, { error: 'Panier vide ou trop volumineux.' });
-  }
+  if (!items.length) return response(400, { error: 'Le panier est vide.' });
+  if (items.length > 50) return response(400, { error: 'Panier trop volumineux.' });
 
-  const basePrices = {
-    'bouquet-20': 24.90,
-    'bouquet-40': 39.90,
-    'bouquet-70': 64.90,
-    'bouquet-100': 79.90,
-    'doudou': 10.00
-  };
-  const composedBase = { '20':24.90, '40':39.90, '70':64.90, '100':79.90 };
-  const extraPrices = {
-    'Couronne': 3.90,
-    'Mini doudou': 2.90,
-    'Initiale': 3.90,
-    'Emballage prestige': 9.90,
-    'Carte à brûler': 3.90
-  };
-
-  const safeText = (v, fallback='') => String(v ?? fallback).slice(0, 500);
-  const positiveInt = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? Math.max(1, Math.min(20, Math.floor(n))) : 1;
-  };
-
-  const lineItems = [];
   let subtotalCents = 0;
+  const lines = [];
 
   try {
     for (const item of items) {
-      const qty = positiveInt(item.qty);
+      const id = String(item?.id || '');
+      const type = String(item?.type || 'fixed');
+      const qty = qtyOf(item?.qty);
+      const meta = item?.meta && typeof item.meta === 'object' ? item.meta : {};
       let unitCents;
       let name;
       let description = '';
 
-      if (item.type === 'composed' || item.id === 'bouquet-compose') {
-        const m = item.meta && typeof item.meta === 'object' ? item.meta : {};
-        const roses = String(m.roses || '');
-        if (composedBase[roses] == null) throw new Error('Format de bouquet personnalisé invalide.');
-        unitCents = Math.round(composedBase[roses] * 100);
-        if (m.packaging === 'Prestige') unitCents += 990;
-
-        const extras = Array.isArray(m.extras) ? m.extras : [];
-        for (const extra of extras) {
-          const raw = String(extra);
-          const key = raw.startsWith('Initiale') ? 'Initiale' : raw;
-          if (extraPrices[key] == null) throw new Error('Supplément invalide dans le panier.');
-          unitCents += Math.round(extraPrices[key] * 100);
+      if (type === 'composed' || id === 'bouquet-compose') {
+        const roses = String(meta.roses || '');
+        if (!Object.prototype.hasOwnProperty.call(COMPOSED, roses)) throw new Error('Format personnalisé invalide.');
+        unitCents = COMPOSED[roses];
+        if (meta.packaging === 'Prestige') unitCents += EXTRAS['Emballage prestige'];
+        for (const extraRaw of Array.isArray(meta.extras) ? meta.extras : []) {
+          const extra = String(extraRaw);
+          const key = extra.startsWith('Initiale') ? 'Initiale' : extra;
+          if (!Object.prototype.hasOwnProperty.call(EXTRAS, key)) throw new Error(`Supplément invalide : ${key}`);
+          unitCents += EXTRAS[key];
         }
-
         name = `Bouquet ${roses} roses personnalisé`;
-        description = [m.color, m.glitter, m.packaging, m.ribbon, extras.join(', ')].filter(Boolean).join(' · ');
-      } else if (item.id === 'rose-unit' || item.type === 'unit-rose') {
-        unitCents = 400;
-        const color = safeText(item.meta?.color, 'Blanc');
+        description = [meta.color, meta.glitter, meta.packaging, meta.ribbon, ...(Array.isArray(meta.extras) ? meta.extras : [])]
+          .filter(Boolean).map(safe).join(' · ');
+      } else if (id === 'rose-unit' || type === 'unit-rose') {
+        unitCents = UNIT_ROSE;
         name = 'Rose à l’unité';
-        description = `Couleur : ${color}`;
-      } else if (Object.prototype.hasOwnProperty.call(basePrices, item.id)) {
-        unitCents = Math.round(basePrices[item.id] * 100);
-        name = item.id === 'doudou'
-          ? 'Doudou Love gonflable'
-          : `Bouquet ${item.id.replace('bouquet-', '')} roses`;
+        description = `Couleur : ${safe(meta.color, 'Blanc')}`;
+      } else if (Object.prototype.hasOwnProperty.call(FIXED, id)) {
+        unitCents = FIXED[id];
+        name = id === 'doudou' ? 'Doudou Love gonflable' : `Bouquet ${id.replace('bouquet-', '')} roses`;
       } else {
         throw new Error('Article inconnu dans le panier.');
       }
 
       subtotalCents += unitCents * qty;
-      lineItems.push({
-        amount: unitCents,
-        quantity: qty,
-        name: safeText(name),
-        description: safeText(description)
-      });
+      lines.push({ unitCents, qty, name: safe(name), description: safe(description) });
     }
-  } catch (err) {
-    return json(400, { error: err.message || 'Panier invalide.' });
+  } catch (e) {
+    return response(400, { error: e.message || 'Panier invalide.' });
   }
 
   const shippingCents = subtotalCents > 0 && subtotalCents < 5000 ? 500 : 0;
   if (shippingCents) {
-    lineItems.push({ amount: shippingCents, quantity: 1, name: 'Livraison à domicile', description: 'Livraison en France' });
+    lines.push({ unitCents: 500, qty: 1, name: 'Livraison à domicile', description: 'Livraison en France' });
   }
-
-  const siteUrl = (event.headers && (event.headers.origin || event.headers.Origin))
-    || process.env.URL
-    || 'https://flowersauraparis.netlify.app';
+  const totalCents = subtotalCents + shippingCents;
 
   const params = new URLSearchParams();
   params.set('mode', 'payment');
-  params.set('success_url', `${siteUrl}/merci.html`);
-  params.set('cancel_url', `${siteUrl}/#collection`);
+  params.set('success_url', `${process.env.URL || 'https://flowersauraparis.netlify.app'}/merci.html`);
+  params.set('cancel_url', `${process.env.URL || 'https://flowersauraparis.netlify.app'}/#collection`);
   params.set('locale', 'fr');
   params.set('billing_address_collection', 'auto');
   params.set('phone_number_collection[enabled]', 'true');
   params.set('shipping_address_collection[allowed_countries][0]', 'FR');
+  params.set('metadata[cart_total_cents]', String(totalCents));
 
-  lineItems.forEach((line, i) => {
+  lines.forEach((line, i) => {
     params.set(`line_items[${i}][price_data][currency]`, 'eur');
-    params.set(`line_items[${i}][price_data][unit_amount]`, String(line.amount));
+    params.set(`line_items[${i}][price_data][unit_amount]`, String(line.unitCents));
     params.set(`line_items[${i}][price_data][product_data][name]`, line.name);
     if (line.description) params.set(`line_items[${i}][price_data][product_data][description]`, line.description);
-    params.set(`line_items[${i}][quantity]`, String(line.quantity));
+    params.set(`line_items[${i}][quantity]`, String(line.qty));
   });
 
   try {
-    const stripeResponse = await fetch('https://api.stripe.com/v1/checkout/sessions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${secret}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: params.toString()
-    });
-
-    const stripeData = await stripeResponse.json();
-    if (!stripeResponse.ok || !stripeData.url) {
-      console.error('Stripe API error:', stripeData);
-      return json(502, { error: stripeData?.error?.message || 'Stripe n’a pas pu créer le paiement.' });
+    const result = await stripeCreateSession(secret, params);
+    if (result.statusCode < 200 || result.statusCode >= 300 || !result.data?.url) {
+      console.error('Stripe checkout error:', result.data);
+      return response(502, { error: result.data?.error?.message || 'Stripe n’a pas pu créer le paiement.' });
     }
-
-    return json(200, { url: stripeData.url });
-  } catch (err) {
-    console.error('Stripe network error:', err);
-    return json(502, { error: 'Impossible de joindre Stripe depuis Netlify.' });
+    return response(200, { url: result.data.url, totalCents });
+  } catch (e) {
+    console.error('Stripe request error:', e);
+    return response(502, { error: 'Impossible de joindre Stripe depuis Netlify.' });
   }
 };

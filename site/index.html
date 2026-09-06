@@ -2621,8 +2621,32 @@ window.AuraCart = (() => {
     render();
   }
 
+  const CATALOG = {
+    'bouquet-20': 24.90,
+    'bouquet-40': 39.90,
+    'bouquet-70': 64.90,
+    'bouquet-100': 79.90,
+    'doudou': 10.00
+  };
+  const COMPOSED_BASE = { '20':24.90, '40':39.90, '70':64.90, '100':79.90 };
+  const EXTRA_PRICES = { 'Couronne':3.90, 'Mini doudou':2.90, 'Initiale':3.90, 'Emballage prestige':9.90, 'Carte à brûler':3.90 };
+
+  function computedUnitPrice(item){
+    if(item?.type === 'composed' || item?.id === 'bouquet-compose'){
+      const m=item.meta||{};
+      let total=COMPOSED_BASE[String(m.roses)] ?? 0;
+      if(m.packaging === 'Prestige') total += EXTRA_PRICES['Emballage prestige'];
+      if(Array.isArray(m.extras)) m.extras.forEach(extra=>{
+        const key=String(extra).startsWith('Initiale') ? 'Initiale' : String(extra);
+        total += EXTRA_PRICES[key] || 0;
+      });
+      return total;
+    }
+    if(item?.id === 'rose-unit' || item?.type === 'unit-rose') return 4;
+    return Object.prototype.hasOwnProperty.call(CATALOG,item?.id) ? CATALOG[item.id] : Number(item?.unitPrice)||0;
+  }
   function totalQty(){ return items.reduce((sum,i)=>sum + Number(i.qty || 0),0); }
-  function subtotal(){ return items.reduce((sum,i)=>sum + Number(i.unitPrice || 0) * Number(i.qty || 0),0); }
+  function subtotal(){ return items.reduce((sum,i)=>sum + computedUnitPrice(i) * Number(i.qty || 0),0); }
   function shipping(){ return subtotal() > 0 && subtotal() < 50 ? 5 : 0; }
 
   function sameItem(a,b){ return a.key && b.key ? a.key === b.key : a.id === b.id && JSON.stringify(a.meta||{}) === JSON.stringify(b.meta||{}); }
@@ -2709,7 +2733,7 @@ window.AuraCart = (() => {
                 <span>${item.qty}</span>
                 <button type="button" data-cart-action="plus" aria-label="Ajouter une unité">+</button>
               </div>
-              <div class="cart-item-price">${money(item.unitPrice * item.qty)}</div>
+              <div class="cart-item-price">${money(computedUnitPrice(item) * item.qty)}</div>
             </div>
             <button class="cart-remove" type="button" data-cart-action="remove">Supprimer</button>
           </div>
@@ -2733,23 +2757,33 @@ window.AuraCart = (() => {
     if(!items.length) return;
     const btn = el('cart-checkout');
     btn.disabled = true;
-    btn.textContent = 'Préparation de votre commande…';
+    btn.textContent = 'Calcul du montant…';
     try{
+      const payloadItems = items.map(item => ({
+        id:item.id,
+        type:item.type,
+        qty:Number(item.qty)||1,
+        meta:item.meta||{}
+      }));
       const response = await fetch('/.netlify/functions/create-checkout', {
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({items})
-      }).catch(networkError => {
-        throw new Error('Impossible de joindre le paiement. Vérifie que le déploiement Netlify est terminé et que la fonction Stripe est bien publiée.');
+        body:JSON.stringify({items:payloadItems})
       });
       const raw = await response.text();
       let data = {};
       try { data = JSON.parse(raw); } catch {}
       if(!response.ok || !data.url){
         const fallback = response.status === 404
-          ? 'La fonction de paiement n’est pas déployée sur Netlify. Vérifie que le dossier netlify/functions est bien présent dans le dépôt.'
+          ? 'Le paiement n’est pas encore publié sur Netlify.'
           : (data.error || raw || 'Impossible de préparer le paiement.');
         throw new Error(fallback);
+      }
+      if(Number.isFinite(Number(data.totalCents))){
+        const serverTotal = Number(data.totalCents) / 100;
+        const displayTotal = serverTotal.toFixed(2).replace('.', ',') + '€';
+        const totalElNow = el('cart-total');
+        if(totalElNow) totalElNow.textContent = displayTotal;
       }
       window.location.href = data.url;
     }catch(error){

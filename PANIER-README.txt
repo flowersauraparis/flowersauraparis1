@@ -1,8 +1,9 @@
-AURA — panier + checkout Stripe
+AURA — panier + checkout
 
-1. Remplacer le contenu du dépôt GitHub par ce projet.
-2. Conserver site/, netlify/, netlify.toml et package.json à la racine.
-3. Dans Netlify > Environment variables, conserver STRIPE_SECRET_KEY.
-4. Netlify doit redéployer après le commit.
+Cette version utilise le panier comme source des articles et le serveur Netlify comme source de vérité des prix.
+Le checkout Stripe recrée chaque ligne avec les prix catalogues : 20€ / 40€ / 70€ / 100€, rose à l’unité, doudou, options du bouquet personnalisé et livraison.
 
-Le panier est client-side et le paiement multi-articles est créé par la fonction Netlify /netlify/functions/create-checkout.js.
+Netlify requis :
+- Build publish = site
+- Functions = netlify/functions
+- Variable : STRIPE_SECRET_KEY
