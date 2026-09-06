@@ -11,6 +11,31 @@
 a{text-decoration:none;color:inherit}.top{background:var(--dark);color:white;text-align:center;padding:9px;font-size:13px}.nav{position:sticky;top:0;z-index:5;background:#fffaf8ee;backdrop-filter:blur(10px);border-bottom:1px solid #ead7dc;display:flex;align-items:center;justify-content:space-between;padding:15px 6%}.logo{font-family:Georgia,serif;font-size:25px;font-weight:bold}.logo span{color:var(--rose)}.links{display:flex;gap:22px;font-size:14px}.btn{display:inline-block;background:var(--rose);color:#fff;padding:13px 19px;border-radius:999px;font-weight:bold;border:0;cursor:pointer}.hero{padding:75px 7% 65px;text-align:center;background:radial-gradient(circle at 50% 10%,#fff 0,#fde8ec 42%,#f8dfe5 100%)}.eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--rose);font-weight:bold}.hero h1{font:normal 58px Georgia,serif;line-height:1.02;margin:15px auto;max-width:850px}.hero p{max-width:650px;margin:0 auto 25px;font-size:18px;line-height:1.6}.spark{color:var(--gold)}section{padding:65px 7%}.title{text-align:center;font:normal 39px Georgia,serif;margin:0 0 12px}.sub{text-align:center;max-width:650px;margin:0 auto 35px;color:#765d66;line-height:1.6}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1100px;margin:auto}.card{background:white;border:1px solid #ead7dc;border-radius:22px;padding:25px;text-align:center}.card h3{font:normal 25px Georgia,serif;margin:8px}.price{font-size:22px;font-weight:bold;color:var(--rose)}.composer{background:#fff}.builder{max-width:1050px;margin:auto;background:white;border:1px solid #ead7dc;border-radius:28px;padding:30px;box-shadow:0 15px 50px #7b43501a}.grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}.field{margin-bottom:22px}.field label{display:block;font-weight:bold;margin-bottom:9px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{border:1px solid #dfcbd1;border-radius:15px;padding:13px;cursor:pointer;background:#fff}.choice.selected{border:2px solid var(--rose);background:#fff1f4}.choice input{margin-right:8px}.summary{background:#fff4f6;border-radius:20px;padding:22px;position:sticky;top:90px}.summary h3{font:normal 25px Georgia,serif;margin-top:0}.line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ead7dc}.total{font-size:28px;font-weight:bold;color:var(--rose);display:flex;justify-content:space-between;margin:18px 0}.note{font-size:12px;color:#806b72;line-height:1.5}.input{width:100%;padding:13px;border:1px solid #dfcbd1;border-radius:12px;font-size:15px}.checks{display:grid;gap:9px}.checks label{font-weight:normal}.reviews{background:#f9e9ed}.reviewgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1050px;margin:auto}.review{background:white;border-radius:20px;padding:22px}.stars{color:#c39b56;letter-spacing:2px}.faq{max-width:800px;margin:auto}.faq details{background:white;border:1px solid #ead7dc;border-radius:15px;padding:17px;margin:10px 0}.foot{background:var(--dark);color:#fff;padding:35px 7%;text-align:center}.mobilecta{display:none}
 @media(max-width:800px){.links{display:none}.hero h1{font-size:43px}.cards,.reviewgrid,.grid{grid-template-columns:1fr}.summary{position:static}.mobilecta{display:block;position:fixed;bottom:14px;left:15px;right:15px;z-index:10;text-align:center;box-shadow:0 8px 25px #0003}.choices{grid-template-columns:1fr 1fr}section{padding:48px 5%}}
 </style>
+
+<style id="aura-bordeaux-composer">
+:root{--cream:#F7EEEB;--pink:#E9C8CB;--rose:#7B2D46;--dark:#4A1E2F;--gold:#B99A68;--white:#FFF9F6;--line:rgba(74,30,47,.13)}
+html,body{background:linear-gradient(180deg,#F8F0ED 0%,#F0E1DF 54%,#F8F0ED 100%)!important;color:var(--dark)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 8% 12%,rgba(164,81,104,.11),transparent 28%),radial-gradient(circle at 92% 16%,rgba(211,174,171,.14),transparent 27%)}
+.top{background:linear-gradient(90deg,#461528,#5F2139,#461528)!important;letter-spacing:.12em}
+.nav{background:rgba(249,241,238,.90)!important;border-bottom-color:var(--line)!important;box-shadow:0 8px 30px rgba(74,30,47,.06)}
+.logo span{color:var(--rose)!important}.links a:hover{color:var(--rose)}
+.btn{background:linear-gradient(135deg,#7C2947,#66213A)!important;box-shadow:0 10px 22px rgba(102,33,58,.16)}
+.hero{background:radial-gradient(circle at 50% 0%,#FFF9F6 0,#F7E4E5 42%,#EBCED0 100%)!important}
+.eyebrow{color:var(--rose)!important}.spark{color:#B99A68!important}
+section{background:transparent!important}
+#bouquets{background:linear-gradient(180deg,rgba(246,232,229,.75),rgba(236,215,216,.52))!important}
+.composer{background:linear-gradient(180deg,rgba(239,220,220,.52),rgba(248,238,234,.72))!important}
+.reviews{background:linear-gradient(180deg,rgba(248,238,234,.62),rgba(234,215,215,.70))!important}
+.card,.review,.builder,details{background:linear-gradient(180deg,rgba(255,250,247,.96),rgba(251,240,237,.90))!important;border-color:var(--line)!important;box-shadow:0 14px 34px rgba(74,30,47,.06)!important}
+.choice{background:rgba(255,249,246,.86)!important;border-color:rgba(74,30,47,.14)!important}
+.choice.selected{border-color:var(--rose)!important;background:rgba(123,45,70,.065)!important}
+.summary{background:linear-gradient(145deg,#F4DDDF,#EED0D3)!important;border:1px solid rgba(74,30,47,.08)}
+.total,.price{color:var(--rose)!important}.stars{color:var(--gold)!important}
+.input{background:#FFF9F6!important;border-color:var(--line)!important;color:var(--dark)!important}
+.foot{background:#401424!important}
+.mobilecta{background:linear-gradient(135deg,#7C2947,#66213A)!important}
+</style>
+
 </head>
 <body>
 <div class="top">Livraison à domicile 4,90 € · Offerte dès 50 € d'achat · Partout en France</div>
@@ -104,7 +129,7 @@ document.getElementById('pay').addEventListener('click',async()=>{
  if(cfg.initiale && !/^[A-ZÀ-ÖØ-Ý]$/i.test(cfg.initiale)){err.textContent='Entre une seule lettre pour l’initiale.';return}
  const btn=document.getElementById('pay');btn.disabled=true;btn.textContent='Redirection vers le paiement…';
  try{
-  const r=await fetch('/.netlify/functions/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});
+  const r=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});
   const data=await r.json();if(!r.ok)throw new Error(data.error||'Erreur de paiement');
   location.href=data.url;
  }catch(e){err.textContent=e.message;btn.disabled=false;update()}
