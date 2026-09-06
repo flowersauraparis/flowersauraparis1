@@ -1,12 +1,6 @@
 {
   "name": "flowers-aura-paris",
   "private": true,
-  "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "cf:login": "wrangler login"
-  },
-  "devDependencies": {
-    "wrangler": "latest"
-  }
+  "scripts": {"dev": "netlify dev"},
+  "engines": {"node": ">=18"}
 }
