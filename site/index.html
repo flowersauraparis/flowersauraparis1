@@ -183,6 +183,31 @@
   }
   .btn-cart:hover{background:var(--rose); color:var(--on-accent);}
 
+  /* -------- collection hierarchy -------- */
+  .collection-layout{display:flex;flex-direction:column;gap:26px;}
+  .signature-row{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
+  .signature-card{padding:22px;}
+  .special-visual{height:250px;border-radius:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid rgba(92,34,51,.10);}
+  .special-visual-makeup{background:radial-gradient(circle at 50% 35%,#fff 0,#f8dce4 38%,#e7b5c3 100%);}
+  .special-visual-jewelry{background:radial-gradient(circle at 50% 35%,#fff 0,#f2e8df 38%,#d8c2aa 100%);}
+  .special-kicker{font-size:.65rem;font-weight:800;letter-spacing:.16em;color:var(--rose);margin-bottom:18px;}
+  .special-symbol{font-family:var(--serif);font-size:3.3rem;color:var(--gold);line-height:1;margin-bottom:8px;}
+  .special-visual strong{font-family:var(--serif);font-size:2rem;letter-spacing:.08em;font-weight:500;color:var(--ink);}
+  .special-visual small{margin-top:7px;font-size:.62rem;letter-spacing:.18em;color:var(--rose-soft);font-weight:700;}
+  .featured-card{padding:24px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;}
+  .featured-card .card-visual{aspect-ratio:16/8;min-height:270px;}
+  .featured-badge{position:absolute;left:16px;top:16px;background:var(--rose);color:#fff;padding:8px 12px;border-radius:999px;font-size:.65rem;font-weight:800;letter-spacing:.1em;}
+  .featured-copy{display:flex;flex-direction:column;justify-content:space-between;gap:28px;height:100%;padding:8px 8px 8px 0;}
+  .featured-copy .card-name{font-size:2rem;}
+  .featured-copy .card-desc{max-width:40ch;margin-top:12px;}
+  .featured-buy{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;border-top:1px solid var(--line);}
+  .featured-buy .card-price{font-size:1.35rem;}
+  .classic-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .compact-card{padding:20px;gap:12px;}
+  .compact-card .card-visual{aspect-ratio:4/3;}
+  .compact-card .card-desc{font-size:.86rem;}
+  @media (max-width:860px){.signature-row,.classic-row{grid-template-columns:1fr;}.featured-card{grid-template-columns:1fr;}.featured-copy{padding:0;}}
+
   /* -------- builder -------- */
   .builder{
     background:var(--bg-card); border:1px solid var(--line); border-radius:20px;
@@ -465,138 +490,31 @@
   <section class="section" id="collection">
     <div class="section-head">
       <h2>Nos bouquets</h2>
-      <p>20, 40, 70 ou 100 roses, en blanc, beige, rose, rouge ou bleu. Découvre aussi nos créations signature : bouquet, bouquet maquillage et bouquet bijoux.</p>
+      <p>Des créations AURA pensées pour offrir un cadeau qui se remarque. Découvre nos deux créations signature, puis nos formats de 100, 20, 40 et 70 roses.</p>
     </div>
-    <div class="grid-collection">
-
-      <div class="card">
-        <div class="card-visual">
-          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-            <rect width="300" height="220" fill="#FBDCE1"/>
-            <ellipse cx="150" cy="110" rx="70" ry="58" fill="#C9184A"/>
-            <ellipse cx="150" cy="110" rx="40" ry="32" fill="#E8547B"/>
-            <g fill="#D4AF7A" opacity="0.9">
-              <circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/>
-              <circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/>
-              <circle cx="150" cy="50" r="2"/>
-            </g>
-          </svg>
+    <div class="collection-layout">
+      <div class="signature-row">
+        <div class="card special-card signature-card">
+          <div class="special-visual special-visual-makeup"><span class="special-kicker">CRÉATION AURA</span><span class="special-symbol">✦</span><strong>MAKEUP</strong><small>ROSES · BEAUTY · GLAM</small></div>
+          <div class="card-name">Bouquet maquillage</div><p class="card-desc">Une création AURA pensée autour de l'univers beauté, avec roses pailletées et détails féminins.</p>
+          <div class="card-foot card-buy"><span class="card-price">Sur commande</span><a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a></div>
         </div>
-        <div class="card-name">40 roses</div>
-        <div class="stars"><span class="fill">★★★★★</span> 4.9 · 128 avis</div>
-        <p class="card-desc">Paillettes incluses par défaut. Choisis ta couleur directement sur la page de paiement. Le format signature de la maison — celui qu'on offre pour dire beaucoup.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">39,90€</span>
-          <a class="btn-cart" href="https://buy.stripe.com/00w5kDaFDd5K74i719eIw02">Payer maintenant</a>
+        <div class="card special-card signature-card">
+          <div class="special-visual special-visual-jewelry"><span class="special-kicker">CRÉATION AURA</span><span class="special-symbol">✧</span><strong>JEWELRY</strong><small>ROSES · BIJOUX · ÉCLAT</small></div>
+          <div class="card-name">Bouquet bijoux</div><p class="card-desc">Une création spectaculaire où les roses pailletées rencontrent des détails bijoux pour un cadeau précieux.</p>
+          <div class="card-foot card-buy"><span class="card-price">Sur commande</span><a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a></div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-visual">
-          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-            <rect width="300" height="220" fill="#FBDCE1"/>
-            <ellipse cx="150" cy="110" rx="70" ry="58" fill="#F3E9EA"/>
-            <ellipse cx="150" cy="110" rx="40" ry="32" fill="#E8C9CE"/>
-            <g fill="#B8C4D6" opacity="0.9">
-              <circle cx="105" cy="65" r="2.4"/><circle cx="200" cy="75" r="2"/>
-              <circle cx="210" cy="150" r="2.6"/><circle cx="95" cy="150" r="2.2"/>
-              <circle cx="150" cy="48" r="2"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card-name">20 roses</div>
-        <div class="stars"><span class="fill">★★★★★</span> 4.8 · 96 avis</div>
-        <p class="card-desc">Paillettes incluses par défaut. Choisis ta couleur directement sur la page de paiement. Lumineux et discret — parfait pour un premier bouquet.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">24,90€</span>
-          <a class="btn-cart" href="https://buy.stripe.com/3cI8wPfZXfdS3S699heIw01">Payer maintenant</a>
-        </div>
+      <div class="featured-100"><div class="card featured-card">
+        <div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="78" ry="64" fill="#5E7FA8"/><ellipse cx="150" cy="110" rx="44" ry="35" fill="#89A6C9"/><g fill="#D4AF7A" opacity="0.9"><circle cx="90" cy="65" r="2.6"/><circle cx="210" cy="75" r="2.2"/><circle cx="220" cy="150" r="2.8"/><circle cx="82" cy="150" r="2.3"/><circle cx="150" cy="45" r="2.2"/></g></svg><span class="featured-badge">FORMAT ICONIQUE</span></div>
+        <div class="featured-copy"><div><div class="card-name">100 roses</div><div class="stars"><span class="fill">★★★★★</span> 4.9 · 74 avis</div><p class="card-desc">Paillettes incluses par défaut. Le format d'exception, pensé pour faire une vraie impression.</p></div><div class="featured-buy"><span class="card-price">79,90€</span><a class="btn-cart" href="https://buy.stripe.com/eVqdR9eVTghW3S699heIw04">Payer maintenant</a></div></div>
+      </div></div>
+      <div class="classic-row">
+        <div class="card compact-card"><div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="66" ry="54" fill="#F3E9EA"/><ellipse cx="150" cy="110" rx="38" ry="30" fill="#E8C9CE"/><g fill="#B8C4D6" opacity="0.9"><circle cx="105" cy="65" r="2.4"/><circle cx="200" cy="75" r="2"/><circle cx="210" cy="150" r="2.6"/><circle cx="95" cy="150" r="2.2"/><circle cx="150" cy="48" r="2"/></g></svg></div><div class="card-name">20 roses</div><div class="stars"><span class="fill">★★★★★</span> 4.8 · 96 avis</div><p class="card-desc">Lumineux et délicat — parfait pour un premier bouquet.</p><div class="card-foot card-buy"><span class="card-price">24,90€</span><a class="btn-cart" href="https://buy.stripe.com/3cI8wPfZXfdS3S699heIw01">Payer maintenant</a></div></div>
+        <div class="card compact-card"><div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="70" ry="58" fill="#C9184A"/><ellipse cx="150" cy="110" rx="40" ry="32" fill="#E8547B"/><g fill="#D4AF7A" opacity="0.9"><circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/><circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/><circle cx="150" cy="50" r="2"/></g></svg></div><div class="card-name">40 roses</div><div class="stars"><span class="fill">★★★★★</span> 4.9 · 128 avis</div><p class="card-desc">Le format signature de la maison — celui qu'on offre pour dire beaucoup.</p><div class="card-foot card-buy"><span class="card-price">39,90€</span><a class="btn-cart" href="https://buy.stripe.com/00w5kDaFDd5K74i719eIw02">Payer maintenant</a></div></div>
+        <div class="card compact-card"><div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="70" ry="58" fill="#E29AB0"/><ellipse cx="150" cy="110" rx="40" ry="32" fill="#F2C4D2"/><g fill="#D4AF7A" opacity="0.9"><circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/><circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/><circle cx="150" cy="50" r="2"/></g></svg></div><div class="card-name">70 roses</div><div class="stars"><span class="fill">★★★★★</span> 5.0 · 61 avis</div><p class="card-desc">Le format généreux, pensé pour marquer une grande occasion.</p><div class="card-foot card-buy"><span class="card-price">64,90€</span><a class="btn-cart" href="https://buy.stripe.com/aFa14n7tr4ze2O2bhpeIw03">Payer maintenant</a></div></div>
       </div>
-
-      <div class="card">
-        <div class="card-visual">
-          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-            <rect width="300" height="220" fill="#FBDCE1"/>
-            <ellipse cx="150" cy="110" rx="70" ry="58" fill="#E29AB0"/>
-            <ellipse cx="150" cy="110" rx="40" ry="32" fill="#F2C4D2"/>
-            <g fill="#D4AF7A" opacity="0.9">
-              <circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/>
-              <circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/>
-              <circle cx="150" cy="50" r="2"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card-name">70 roses</div>
-        <div class="stars"><span class="fill">★★★★★</span> 5.0 · 61 avis</div>
-        <p class="card-desc">Paillettes incluses par défaut. Choisis ta couleur directement sur la page de paiement. Le format généreux, pensé pour marquer une grande occasion.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">64,90€</span>
-          <a class="btn-cart" href="https://buy.stripe.com/aFa14n7tr4ze2O2bhpeIw03">Payer maintenant</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-visual">
-          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-            <rect width="300" height="220" fill="#FBDCE1"/>
-            <ellipse cx="150" cy="110" rx="70" ry="58" fill="#5E7FA8"/>
-            <ellipse cx="150" cy="110" rx="40" ry="32" fill="#89A6C9"/>
-            <g fill="#D4AF7A" opacity="0.9">
-              <circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/>
-              <circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/>
-              <circle cx="150" cy="50" r="2"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card-name">100 roses</div>
-        <div class="stars"><span class="fill">★★★★★</span> 4.9 · 74 avis</div>
-        <p class="card-desc">Paillettes incluses par défaut. Choisis ta couleur directement sur la page de paiement. Le format d'exception, pour l'occasion qu'on n'oublie pas.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">79,90€</span>
-          <a class="btn-cart" href="https://buy.stripe.com/eVqdR9eVTghW3S699heIw04">Payer maintenant</a>
-        </div>
-      </div>
-
-    
-      <div class="card special-card">
-        <div class="card-visual">
-          <span class="card-badge">Création AURA</span>
-          <img class="collection-photo" src="assets/hero-client.webp" alt="Bouquet AURA rouge offert" loading="lazy">
-        </div>
-        <div class="card-name">Bouquet</div>
-        <p class="card-desc">Notre bouquet iconique en roses rouges pailletées, pensé pour faire son effet dès le premier regard.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">Sur commande</span>
-          <a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a>
-        </div>
-      </div>
-
-      <div class="card special-card">
-        <div class="card-visual">
-          <span class="card-badge">Nouveau</span>
-          <img class="collection-photo" src="assets/bouquet-maquillage.webp" alt="Bouquet maquillage AURA" loading="lazy">
-        </div>
-        <div class="card-name">Bouquet maquillage</div>
-        <p class="card-desc">Un bouquet gourmand et ultra-féminin qui associe roses, petites attentions beauté et présentation AURA.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">Sur commande</span>
-          <a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a>
-        </div>
-      </div>
-
-      <div class="card special-card">
-        <div class="card-visual">
-          <span class="card-badge">Nouveau</span>
-          <img class="collection-photo" src="assets/bouquet-bijoux.webp" alt="Bouquet bijoux AURA avec couronne" loading="lazy">
-        </div>
-        <div class="card-name">Bouquet bijoux</div>
-        <p class="card-desc">Un bouquet spectaculaire avec détails bijoux et finition précieuse, idéal pour une occasion qui mérite plus.</p>
-        <div class="card-foot card-buy">
-          <span class="card-price">Sur commande</span>
-          <a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a>
-        </div>
-      </div>
-</div>
+    </div>
   </section>
 
   <section class="section" id="personnalise">
