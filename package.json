@@ -1,6 +1,0 @@
-{
-  "name": "flowers-aura-paris",
-  "private": true,
-  "scripts": {"dev": "netlify dev"},
-  "engines": {"node": ">=18"}
-}
