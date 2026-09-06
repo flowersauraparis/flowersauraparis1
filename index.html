@@ -2030,10 +2030,47 @@ footer .footer-title,footer h3{font-size:1rem!important}
 .product-body,.signature-info{position:relative}
 @media(max-width:700px){.card-buy > div{justify-content:flex-start}.cart-drawer{width:min(420px,100vw)}}
 </style>
+
+<style id="aura-ticker-and-cart-labels">
+  .aura-ticker{
+    position:relative; overflow:hidden; white-space:nowrap;
+    background:#4B1D2C; color:#FFF8F5;
+    padding:9px 0; border:0; text-align:left;
+  }
+  .aura-ticker-track{
+    display:inline-flex; align-items:center; gap:28px; min-width:max-content;
+    padding-left:100%; animation:auraTicker 24s linear infinite;
+    font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  }
+  .aura-ticker-track span:nth-child(even){opacity:.58}
+  @keyframes auraTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .btn-add-cart{
+    padding:10px 16px; font-size:10px; letter-spacing:.02em;
+  }
+  .product-body .btn-add-cart, .card-buy .btn-add-cart, #add-composed-cart{
+    min-width:142px; text-align:center;
+  }
+  @media (prefers-reduced-motion:reduce){.aura-ticker-track{animation:none;padding-left:18px;flex-wrap:wrap;justify-content:center;white-space:normal}}
+  @media(max-width:560px){.aura-ticker-track{font-size:9px;gap:18px;animation-duration:20s}}
+</style>
 </head>
 <body>
 
-<div class="announce">Livraison à domicile 5€ · Offerte dès 50€ d'achat · Partout en France</div>
+<div class="announce aura-ticker" aria-label="Informations boutique">
+  <div class="aura-ticker-track">
+    <span>🚚 Livraison à domicile 5€ · offerte dès 50€ d’achat</span>
+    <span aria-hidden="true">•</span>
+    <span>🔒 Paiement sécurisé</span>
+    <span aria-hidden="true">•</span>
+    <span>✨ Bouquet personnalisable</span>
+    <span aria-hidden="true">•</span>
+    <span>🚚 Livraison à domicile 5€ · offerte dès 50€ d’achat</span>
+    <span aria-hidden="true">•</span>
+    <span>🔒 Paiement sécurisé</span>
+    <span aria-hidden="true">•</span>
+    <span>✨ Bouquet personnalisable</span>
+  </div>
+</div>
 
 <header>
   <nav class="nav wrap" style="padding-left:0; padding-right:0;">
@@ -2167,7 +2204,7 @@ footer .footer-title,footer h3{font-size:1rem!important}
           <button class="gallery-dot" type="button" aria-label="Voir la photo 3"></button>
         </div>
       </div>
-      <div class="product-body"><div><h4>20 roses</h4><p>Petit format, grand effet.</p></div><strong>24,90€</strong><a href="https://buy.stripe.com/3cI8wPfZXfdS3S699heIw01" target="_blank" rel="noopener">Commander →</a><button class="btn-add-cart" type="button" onclick="AuraCart.add('bouquet-20','Bouquet 20 roses',24.90)">+ Panier</button></div>
+      <div class="product-body"><div><h4>20 roses</h4><p>Petit format, grand effet.</p></div><strong>24,90€</strong><a href="https://buy.stripe.com/3cI8wPfZXfdS3S699heIw01" target="_blank" rel="noopener">Commander →</a><button class="btn-add-cart" type="button" onclick="AuraCart.add('bouquet-20','Bouquet 20 roses',24.90)">Ajouter au panier</button></div>
     </article>
     <article class="product-card product-card-gallery">
       <div class="product-image gallery" data-gallery="40-roses">
@@ -2185,7 +2222,7 @@ footer .footer-title,footer h3{font-size:1rem!important}
           <button class="gallery-dot" type="button" aria-label="Voir la photo 3"></button>
         </div>
       </div>
-      <div class="product-body"><div><h4>40 roses</h4><p>Le format signature.</p></div><strong>39,90€</strong><a href="https://buy.stripe.com/00w5kDaFDd5K74i719eIw02" target="_blank" rel="noopener">Commander →</a><button class="btn-add-cart" type="button" onclick="AuraCart.add('bouquet-40','Bouquet 40 roses',39.90)">+ Panier</button></div>
+      <div class="product-body"><div><h4>40 roses</h4><p>Le format signature.</p></div><strong>39,90€</strong><a href="https://buy.stripe.com/00w5kDaFDd5K74i719eIw02" target="_blank" rel="noopener">Commander →</a><button class="btn-add-cart" type="button" onclick="AuraCart.add('bouquet-40','Bouquet 40 roses',39.90)">Ajouter au panier</button></div>
     </article>
     <article class="product-card product-card-gallery">
       <div class="product-image gallery" data-gallery="70-roses">
@@ -2203,7 +2240,7 @@ footer .footer-title,footer h3{font-size:1rem!important}
           <button class="gallery-dot" type="button" aria-label="Voir la photo 3"></button>
         </div>
       </div>
-      <div class="product-body"><div><h4>70 roses</h4><p>Pour les grandes occasions.</p></div><strong>64,90€</strong><a href="https://buy.stripe.com/aFa14n7tr4ze2O2bhpeIw03" target="_blank" rel="noopener">Commander →</a><button class="btn-add-cart" type="button" onclick="AuraCart.add('bouquet-70','Bouquet 70 roses',64.90)">+ Panier</button></div>
+      <div class="product-body"><div><h4>70 roses</h4><p>Pour les grandes occasions.</p></div><strong>64,90€</strong><a href="https://buy.stripe.com/aFa14n7tr4ze2O2bhpeIw03" target="_blank" rel="noopener">Commander →</a><button class="btn-add-cart" type="button" onclick="AuraCart.add('bouquet-70','Bouquet 70 roses',64.90)">Ajouter au panier</button></div>
     </article>
   </div>
   <div class="collection-footer"><span>Une couleur précise ? Une initiale ? Une couronne ?</span><a href="#personnalise">Compose ton bouquet sur mesure <span>✦</span></a></div>
@@ -2284,7 +2321,7 @@ footer .footer-title,footer h3{font-size:1rem!important}
         </div>
         <div class="composer-actions">
           <button class="btn-primary" id="pay-now" type="button">Acheter maintenant — 20 roses</button>
-          <button class="btn-add-cart" type="button" id="add-composed-cart" onclick="addComposedBouquetToCart()">+ Panier</button>
+          <button class="btn-add-cart" type="button" id="add-composed-cart" onclick="addComposedBouquetToCart()">Ajouter au panier</button>
           <button class="btn-secondary" id="copy-recap" type="button">Copier ma commande</button>
         </div>
       </div>
@@ -2341,7 +2378,7 @@ footer .footer-title,footer h3{font-size:1rem!important}
         <div class="card-foot card-buy" style="border-top:none; padding-top:6px;">
           <span class="card-price" id="unit-total">4€</span>
           <div style="display:flex; gap:8px;">
-            <button class="btn-add-cart" type="button" onclick="addUnitRoseToCart()">+ Panier</button>
+            <button class="btn-add-cart" type="button" onclick="addUnitRoseToCart()">Ajouter au panier</button>
             <button class="btn-cart" type="button" onclick="buyUnitRoseNow()">Acheter maintenant</button>
           </div>
         </div>
@@ -2371,7 +2408,7 @@ footer .footer-title,footer h3{font-size:1rem!important}
         <div class="card-foot card-buy">
           <span class="card-price">10€</span>
           <div style="display:flex; gap:8px;">
-            <button class="btn-add-cart" type="button" onclick="AuraCart.add('doudou','Doudou Love gonflable',10)">+ Panier</button>
+            <button class="btn-add-cart" type="button" onclick="AuraCart.add('doudou','Doudou Love gonflable',10)">Ajouter au panier</button>
             <button class="btn-cart" type="button" onclick="buySimpleNow('doudou','Doudou Love gonflable')">Acheter maintenant</button>
           </div>
         </div>
@@ -2853,7 +2890,7 @@ document.querySelectorAll('[data-gallery]').forEach(gallery=>{
     const o=currentCustom();
     const meta=`${o.roses} roses · ${o.color} · ${o.glitter} · ${o.packaging} · ruban ${o.ribbon}${o.extras.length?' · '+o.extras.join(', '):''}`;
     add({id:'custom-bouquet',name:`Bouquet personnalisé · ${o.roses} roses`,unitPrice:o.price,qty:1,meta,options:o});
-    const btn=$('#add-composed-cart'); if(btn){btn.classList.add('is-added');btn.textContent='✓ Ajouté au panier';setTimeout(()=>{btn.classList.remove('is-added');btn.textContent='+ Panier'},1400)}
+    const btn=$('#add-composed-cart'); if(btn){btn.classList.add('is-added');btn.textContent='✓ Ajouté au panier';setTimeout(()=>{btn.classList.remove('is-added');btn.textContent='Ajouter au panier'},1400)}
   };
 
   window.addUnitRoseToCart=function(){
