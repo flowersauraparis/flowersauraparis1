@@ -423,6 +423,119 @@
   display:block;
 }
 </style>
+
+<style id="aura-dreamflowers-layer">
+:root{
+  --aura-cream:#fbf7f4;
+  --aura-white:#fffdfb;
+  --aura-burgundy:#641d32;
+  --aura-burgundy-2:#8b3049;
+  --aura-pink:#e84f78;
+  --aura-gold:#b88a48;
+  --aura-line:rgba(92,34,51,.12);
+}
+body{background:var(--aura-cream);}
+.announce{background:var(--aura-burgundy);letter-spacing:.04em;font-size:.74rem;padding:10px 16px;}
+header{background:rgba(255,253,251,.92);border-bottom:1px solid rgba(92,34,51,.10);}
+.nav{max-width:1280px;margin:auto;padding:17px 32px;}
+.logo{font-size:1.45rem;letter-spacing:.02em;}
+.nav-links{gap:28px;font-size:.86rem;}
+.nav-links a{opacity:.65;}
+.nav-links a:hover{color:var(--aura-pink);opacity:1;}
+.nav-cta{background:var(--aura-burgundy);box-shadow:0 8px 22px rgba(100,29,50,.18);}
+
+.hero{
+  max-width:1280px;
+  min-height:650px;
+  padding:62px 32px 72px;
+  grid-template-columns:.88fr 1.12fr;
+  gap:54px;
+}
+.hero > div:first-of-type{padding-left:16px;}
+.hero-eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.18em;font-style:normal;font-weight:800;color:var(--aura-pink);}
+.hero h1{font-size:clamp(3.2rem,5.7vw,5.9rem);line-height:.96;letter-spacing:-.045em;max-width:8ch;}
+.hero p.lead{font-size:1rem;line-height:1.75;max-width:43ch;color:#775263;}
+.hero-actions{gap:12px;}
+.btn-primary{background:var(--aura-burgundy);border-radius:10px;padding:14px 22px;box-shadow:0 12px 28px rgba(100,29,50,.18);}
+.btn-primary:hover{background:#4e1627;}
+.btn-secondary{border-radius:10px;background:#fff;border-color:rgba(92,34,51,.16);padding:14px 22px;}
+.hero-visual{aspect-ratio:1.08/1;border-radius:4px;overflow:hidden;box-shadow:0 26px 70px rgba(92,34,51,.14);background:#eadbd6;}
+.hero-photo{width:100%;height:100%;object-fit:cover;object-position:center 50%;transform:none;filter:none;}
+
+.trust-bar{background:#fff;border-color:var(--aura-line);padding:22px 0;}
+.trust-grid{max-width:1280px;}
+.trust-item{font-size:.78rem;color:#7a5b67;}
+.trust-item strong{font-size:.8rem;}
+.trust-item svg{color:var(--aura-gold);}
+
+.section{padding:92px 0;}
+.section-head{margin-bottom:34px;align-items:end;}
+.section-head h2{font-size:clamp(2.2rem,4vw,3.5rem);letter-spacing:-.035em;}
+.section-head>p{max-width:42ch;font-size:.92rem;line-height:1.7;}
+
+.aura-shop{max-width:1280px;margin:auto;padding-left:32px;padding-right:32px;}
+.dream-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;}
+.dream-product{background:#fff;border:1px solid rgba(92,34,51,.09);border-radius:3px;overflow:hidden;box-shadow:0 10px 32px rgba(92,34,51,.055);transition:transform .25s ease,box-shadow .25s ease;}
+.dream-product:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(92,34,51,.12);}
+.dream-media{display:block;position:relative;aspect-ratio:1.06/1;overflow:hidden;background:#f0e7e4;}
+.dream-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.dream-product:hover .dream-media img{transform:scale(1.035);}
+.dream-badge{position:absolute;left:16px;top:16px;background:#fff;color:var(--aura-burgundy);font-size:.61rem;font-weight:900;letter-spacing:.12em;padding:8px 10px;border-radius:2px;box-shadow:0 6px 18px rgba(0,0,0,.09);}
+.dream-arrow{position:absolute;right:16px;bottom:16px;width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.15rem;color:var(--aura-burgundy);box-shadow:0 7px 18px rgba(0,0,0,.10);}
+.dream-product-info{padding:18px 20px 20px;display:flex;align-items:end;justify-content:space-between;gap:16px;}
+.dream-product-info h3,.dream-mini h3{font-family:var(--serif);font-weight:500;color:var(--aura-burgundy);font-size:1.35rem;}
+.dream-product-info p,.dream-mini p{margin-top:4px;color:#856773;font-size:.82rem;line-height:1.55;max-width:38ch;}
+.dream-featured{margin-top:22px;background:#fff;border:1px solid rgba(92,34,51,.09);display:grid;grid-template-columns:1.2fr .8fr;min-height:390px;box-shadow:0 12px 38px rgba(92,34,51,.06);}
+.dream-featured-media{position:relative;overflow:hidden;min-height:390px;background:#eee;}
+.dream-featured-media img{width:100%;height:100%;object-fit:cover;object-position:center 56%;}
+.dream-featured-copy{padding:46px 46px 40px;display:flex;flex-direction:column;justify-content:center;}
+.dream-eyebrow{font-size:.67rem;letter-spacing:.18em;font-weight:900;color:var(--aura-pink);margin-bottom:14px;}
+.dream-featured-copy h3{font-family:var(--serif);font-size:3rem;font-weight:500;color:var(--aura-burgundy);line-height:1;}
+.dream-featured-copy .stars{margin:14px 0 12px;}
+.dream-featured-copy>p{color:#775263;line-height:1.7;max-width:38ch;font-size:.92rem;}
+.dream-price-row{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--aura-line);margin-top:28px;padding-top:20px;}
+.dream-price-row strong{font-family:var(--serif);font-size:1.55rem;color:var(--aura-burgundy);}
+.dream-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;}
+.dream-mini{background:#fff;border:1px solid rgba(92,34,51,.09);padding:12px;box-shadow:0 10px 30px rgba(92,34,51,.045);}
+.dream-mini-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:#eee;}
+.dream-mini-media img{width:100%;height:100%;object-fit:cover;}
+.dream-mini-media span{position:absolute;left:12px;top:12px;background:rgba(255,253,251,.94);border-radius:50%;width:42px;height:42px;display:grid;place-items:center;font-family:var(--serif);font-size:.95rem;color:var(--aura-burgundy);}
+.dream-mini-info{padding:15px 4px 12px;display:flex;justify-content:space-between;align-items:end;gap:10px;}
+.dream-mini-info strong{font-family:var(--serif);font-size:1.1rem;color:var(--aura-gold);white-space:nowrap;}
+.dream-full-btn{width:100%;text-align:center;margin-top:2px;border-radius:4px;padding:10px;}
+.collection-note{margin-top:24px;background:#f6e9e9;border:1px solid rgba(92,34,51,.08);padding:15px 18px;display:flex;align-items:center;gap:12px;}
+.collection-note span{color:var(--aura-gold);font-size:1.2rem;}
+.collection-note p{font-size:.84rem;color:#775263;}
+.collection-note a{color:var(--aura-burgundy);font-weight:800;text-decoration:underline;text-underline-offset:3px;}
+
+.builder{border-radius:4px;box-shadow:0 18px 55px rgba(92,34,51,.08);}
+.builder h2{font-size:2.25rem;}
+.builder .hero-eyebrow{font-size:.72rem;}
+
+.story-visual{border-radius:4px;}
+.review-card{border-radius:4px;}
+.order{border-radius:4px;}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:48px;}
+  .hero>div:first-of-type{padding-left:0;}
+  .hero-visual{aspect-ratio:4/4.4;}
+  .dream-grid,.dream-featured{grid-template-columns:1fr;}
+  .dream-mini-grid{grid-template-columns:1fr 1fr;}
+  .dream-featured-copy{padding:32px 24px;}
+  .dream-featured-media{min-height:340px;}
+}
+@media(max-width:560px){
+  .nav{padding:14px 18px;}
+  .aura-shop{padding-left:18px;padding-right:18px;}
+  .section{padding:68px 0;}
+  .dream-mini-grid{grid-template-columns:1fr;}
+  .hero{padding-left:18px;padding-right:18px;}
+  .hero h1{font-size:3.05rem;}
+  .trust-grid{grid-template-columns:1fr 1fr;gap:16px;}
+}
+</style>
+
 </head>
 <body>
 
@@ -460,7 +573,7 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img class="hero-photo" src="assets/hero-client.webp" alt="Bouquet AURA offert à Paris" loading="eager" fetchpriority="high">
+    <img class="hero-photo" src="assets/bouquet-duo.webp" alt="Création AURA avec roses et doudou" loading="eager" fetchpriority="high">
   </div>
 </section>
 
@@ -487,33 +600,87 @@
 
 <main class="wrap">
 
-  <section class="section" id="collection">
+  <section class="section aura-shop" id="collection">
     <div class="section-head">
-      <h2>Nos bouquets</h2>
-      <p>Des créations AURA pensées pour offrir un cadeau qui se remarque. Découvre nos deux créations signature, puis nos formats de 100, 20, 40 et 70 roses.</p>
+      <div>
+        <div class="hero-eyebrow">La collection AURA</div>
+        <h2>Les créations qui font leur effet.</h2>
+      </div>
+      <p>Des bouquets pailletés imaginés pour être offerts, photographiés et surtout… mémorables.</p>
     </div>
-    <div class="collection-layout">
-      <div class="signature-row">
-        <div class="card special-card signature-card">
-          <div class="special-visual special-visual-makeup"><span class="special-kicker">CRÉATION AURA</span><span class="special-symbol">✦</span><strong>MAKEUP</strong><small>ROSES · BEAUTY · GLAM</small></div>
-          <div class="card-name">Bouquet maquillage</div><p class="card-desc">Une création AURA pensée autour de l'univers beauté, avec roses pailletées et détails féminins.</p>
-          <div class="card-foot card-buy"><span class="card-price">Sur commande</span><a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a></div>
+
+    <div class="dream-grid">
+      <article class="dream-product dream-product-large">
+        <a class="dream-media" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">
+          <img src="assets/bouquet-maquillage.webp" alt="Bouquet maquillage AURA" loading="lazy">
+          <span class="dream-badge">CRÉATION SIGNATURE</span>
+          <span class="dream-arrow">↗</span>
+        </a>
+        <div class="dream-product-info">
+          <div>
+            <h3>Bouquet maquillage</h3>
+            <p>Roses pailletées & univers beauté — une création pensée comme un vrai cadeau.</p>
+          </div>
+          <a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a>
         </div>
-        <div class="card special-card signature-card">
-          <div class="special-visual special-visual-jewelry"><span class="special-kicker">CRÉATION AURA</span><span class="special-symbol">✧</span><strong>JEWELRY</strong><small>ROSES · BIJOUX · ÉCLAT</small></div>
-          <div class="card-name">Bouquet bijoux</div><p class="card-desc">Une création spectaculaire où les roses pailletées rencontrent des détails bijoux pour un cadeau précieux.</p>
-          <div class="card-foot card-buy"><span class="card-price">Sur commande</span><a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a></div>
+      </article>
+
+      <article class="dream-product dream-product-large">
+        <a class="dream-media" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">
+          <img src="assets/bouquet-bijoux.webp" alt="Bouquet bijoux AURA" loading="lazy">
+          <span class="dream-badge">CRÉATION SIGNATURE</span>
+          <span class="dream-arrow">↗</span>
+        </a>
+        <div class="dream-product-info">
+          <div>
+            <h3>Bouquet bijoux</h3>
+            <p>Roses pailletées & détails précieux pour une surprise qui se remarque.</p>
+          </div>
+          <a class="btn-cart" href="https://instagram.com/flowersauraparis" target="_blank" rel="noopener">Commander</a>
+        </div>
+      </article>
+    </div>
+
+    <article class="dream-featured">
+      <div class="dream-featured-media">
+        <img src="assets/bouquet-duo.webp" alt="Bouquet AURA avec doudou" loading="lazy">
+        <span class="dream-badge">LE FORMAT QUI MARQUE</span>
+      </div>
+      <div class="dream-featured-copy">
+        <div class="dream-eyebrow">AURA · ICONIQUE</div>
+        <h3>100 roses</h3>
+        <div class="stars"><span class="fill">★★★★★</span> 4.9 · 74 avis</div>
+        <p>Le grand format pour les occasions où un simple bouquet ne suffit pas. Paillettes incluses par défaut.</p>
+        <div class="dream-price-row">
+          <strong>79,90€</strong>
+          <a class="btn-primary" href="https://buy.stripe.com/eVqdR9eVTghW3S699heIw04">Payer maintenant</a>
         </div>
       </div>
-      <div class="featured-100"><div class="card featured-card">
-        <div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="78" ry="64" fill="#5E7FA8"/><ellipse cx="150" cy="110" rx="44" ry="35" fill="#89A6C9"/><g fill="#D4AF7A" opacity="0.9"><circle cx="90" cy="65" r="2.6"/><circle cx="210" cy="75" r="2.2"/><circle cx="220" cy="150" r="2.8"/><circle cx="82" cy="150" r="2.3"/><circle cx="150" cy="45" r="2.2"/></g></svg><span class="featured-badge">FORMAT ICONIQUE</span></div>
-        <div class="featured-copy"><div><div class="card-name">100 roses</div><div class="stars"><span class="fill">★★★★★</span> 4.9 · 74 avis</div><p class="card-desc">Paillettes incluses par défaut. Le format d'exception, pensé pour faire une vraie impression.</p></div><div class="featured-buy"><span class="card-price">79,90€</span><a class="btn-cart" href="https://buy.stripe.com/eVqdR9eVTghW3S699heIw04">Payer maintenant</a></div></div>
-      </div></div>
-      <div class="classic-row">
-        <div class="card compact-card"><div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="66" ry="54" fill="#F3E9EA"/><ellipse cx="150" cy="110" rx="38" ry="30" fill="#E8C9CE"/><g fill="#B8C4D6" opacity="0.9"><circle cx="105" cy="65" r="2.4"/><circle cx="200" cy="75" r="2"/><circle cx="210" cy="150" r="2.6"/><circle cx="95" cy="150" r="2.2"/><circle cx="150" cy="48" r="2"/></g></svg></div><div class="card-name">20 roses</div><div class="stars"><span class="fill">★★★★★</span> 4.8 · 96 avis</div><p class="card-desc">Lumineux et délicat — parfait pour un premier bouquet.</p><div class="card-foot card-buy"><span class="card-price">24,90€</span><a class="btn-cart" href="https://buy.stripe.com/3cI8wPfZXfdS3S699heIw01">Payer maintenant</a></div></div>
-        <div class="card compact-card"><div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="70" ry="58" fill="#C9184A"/><ellipse cx="150" cy="110" rx="40" ry="32" fill="#E8547B"/><g fill="#D4AF7A" opacity="0.9"><circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/><circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/><circle cx="150" cy="50" r="2"/></g></svg></div><div class="card-name">40 roses</div><div class="stars"><span class="fill">★★★★★</span> 4.9 · 128 avis</div><p class="card-desc">Le format signature de la maison — celui qu'on offre pour dire beaucoup.</p><div class="card-foot card-buy"><span class="card-price">39,90€</span><a class="btn-cart" href="https://buy.stripe.com/00w5kDaFDd5K74i719eIw02">Payer maintenant</a></div></div>
-        <div class="card compact-card"><div class="card-visual"><svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#FBDCE1"/><ellipse cx="150" cy="110" rx="70" ry="58" fill="#E29AB0"/><ellipse cx="150" cy="110" rx="40" ry="32" fill="#F2C4D2"/><g fill="#D4AF7A" opacity="0.9"><circle cx="100" cy="70" r="2.4"/><circle cx="205" cy="80" r="2"/><circle cx="215" cy="150" r="2.6"/><circle cx="90" cy="150" r="2.2"/><circle cx="150" cy="50" r="2"/></g></svg></div><div class="card-name">70 roses</div><div class="stars"><span class="fill">★★★★★</span> 5.0 · 61 avis</div><p class="card-desc">Le format généreux, pensé pour marquer une grande occasion.</p><div class="card-foot card-buy"><span class="card-price">64,90€</span><a class="btn-cart" href="https://buy.stripe.com/aFa14n7tr4ze2O2bhpeIw03">Payer maintenant</a></div></div>
-      </div>
+    </article>
+
+    <div class="dream-mini-grid">
+      <article class="dream-mini">
+        <div class="dream-mini-media"><img src="assets/bouquet-duo.webp" alt="Bouquet AURA 20 roses" loading="lazy"><span>20</span></div>
+        <div class="dream-mini-info"><div><h3>20 roses</h3><p>Le petit cadeau qui fait immédiatement son effet.</p></div><strong>24,90€</strong></div>
+        <a class="btn-cart dream-full-btn" href="https://buy.stripe.com/3cI8wPfZXfdS3S699heIw01">Payer maintenant</a>
+      </article>
+
+      <article class="dream-mini">
+        <div class="dream-mini-media"><img src="assets/hero-client.webp" alt="Bouquet AURA 40 roses" loading="lazy"><span>40</span></div>
+        <div class="dream-mini-info"><div><h3>40 roses</h3><p>Le format signature AURA.</p></div><strong>39,90€</strong></div>
+        <a class="btn-cart dream-full-btn" href="https://buy.stripe.com/00w5kDaFDd5K74i719eIw02">Payer maintenant</a>
+      </article>
+
+      <article class="dream-mini">
+        <div class="dream-mini-media"><img src="assets/bouquet-duo.webp" alt="Bouquet AURA 70 roses" loading="lazy"><span>70</span></div>
+        <div class="dream-mini-info"><div><h3>70 roses</h3><p>Un format généreux pour une grande occasion.</p></div><strong>64,90€</strong></div>
+        <a class="btn-cart dream-full-btn" href="https://buy.stripe.com/aFa14n7tr4ze2O2bhpeIw03">Payer maintenant</a>
+      </article>
+    </div>
+
+    <div class="collection-note">
+      <span>✦</span>
+      <p>Tu veux quelque chose d'unique ? <a href="#personnalise">Compose ton bouquet</a> en quelques clics.</p>
     </div>
   </section>
 
